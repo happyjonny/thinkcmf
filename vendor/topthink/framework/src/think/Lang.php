@@ -18,8 +18,6 @@ namespace think;
  */
 class Lang
 {
-    protected $app;
-
     /**
      * 配置参数
      * @var array
@@ -64,26 +62,15 @@ class Lang
      * @access public
      * @param array $config
      */
-    public function __construct(App $app, array $config = [])
+    public function __construct(array $config = [])
     {
         $this->config = array_merge($this->config, array_change_key_case($config));
         $this->range  = $this->config['default_lang'];
-        $this->app    = $app;
     }
 
-    public static function __make(App $app, Config $config)
+    public static function __make(Config $config)
     {
-        return new static($app, $config->get('lang'));
-    }
-
-    /**
-     * 获取当前语言配置
-     * @access public
-     * @return array
-     */
-    public function getConfig(): array
-    {
-        return $this->config;
+        return new static($config->get('lang'));
     }
 
     /**
@@ -115,37 +102,6 @@ class Lang
     public function defaultLangSet()
     {
         return $this->config['default_lang'];
-    }
-
-    /**
-     * 切换语言
-     * @access public
-     * @param string $langset 语言
-     * @return void
-     */
-    public function switchLangSet(string $langset)
-    {
-        if (empty($langset)) {
-            return;
-        }
-
-        $this->setLangSet($langset);
-
-        // 加载系统语言包
-        $this->load([
-            $this->app->getThinkPath() . 'lang' . DIRECTORY_SEPARATOR . $langset . '.php',
-        ]);
-
-        // 加载系统语言包
-        $files = glob($this->app->getAppPath() . 'lang' . DIRECTORY_SEPARATOR . $langset . '.*');
-        $this->load($files);
-
-        // 加载扩展（自定义）语言包
-        $list = $this->app->config->get('lang.extend_list', []);
-
-        if (isset($list[$langset])) {
-            $this->load($list[$langset]);
-        }
     }
 
     /**
@@ -246,10 +202,6 @@ class Lang
     {
         $range = $range ?: $this->range;
 
-        if (!isset($this->lang[$range])) {
-            $this->switchLangSet($range);
-        }
-
         // 空参数返回所有定义
         if (is_null($name)) {
             return $this->lang[$range] ?? [];
@@ -289,7 +241,6 @@ class Lang
 
     /**
      * 自动侦测设置获取语言选择
-     * @deprecated
      * @access public
      * @param Request $request
      * @return string
@@ -329,7 +280,6 @@ class Lang
 
     /**
      * 保存当前语言到Cookie
-     * @deprecated
      * @access public
      * @param Cookie $cookie Cookie对象
      * @return void

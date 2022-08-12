@@ -67,7 +67,7 @@ abstract class Make extends Command
 
     protected function getPathName(string $name): string
     {
-        $name = substr($name, 4);
+        $name = str_replace('app\\', '', $name);
 
         return $this->app->getBasePath() . ltrim(str_replace('\\', '/', $name), '/') . '.php';
     }

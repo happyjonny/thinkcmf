@@ -17,7 +17,6 @@ use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Memory as MemoryStore;
 use League\Flysystem\Filesystem;
-use RuntimeException;
 use think\Cache;
 use think\File;
 
@@ -90,16 +89,6 @@ abstract class Driver
         }
 
         return $path;
-    }
-
-    protected function concatPathToUrl($url, $path)
-    {
-        return rtrim($url, '/') . '/' . ltrim($path, '/');
-    }
-
-    public function url(string $path): string
-    {
-        throw new RuntimeException('This driver does not support retrieving URLs.');
     }
 
     /**

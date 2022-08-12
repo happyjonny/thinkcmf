@@ -158,13 +158,11 @@ class Cookie
      * Cookie删除
      * @access public
      * @param  string $name cookie名称
-     * @param  array  $options cookie参数
      * @return void
      */
-    public function delete(string $name, array $options = []): void
+    public function delete(string $name): void
     {
-        $config = array_merge($this->config, array_change_key_case($options));
-        $this->setCookie($name, '', time() - 3600, $config);
+        $this->setCookie($name, '', time() - 3600, $this->config);
     }
 
     /**

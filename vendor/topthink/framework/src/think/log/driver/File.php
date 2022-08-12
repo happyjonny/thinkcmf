@@ -139,9 +139,7 @@ class File implements LogHandlerInterface
 
             try {
                 if (count($files) > $this->config['max_files']) {
-                    set_error_handler(function ($errno, $errstr, $errfile, $errline) {});
                     unlink($files[0]);
-                    restore_error_handler();
                 }
             } catch (\Exception $e) {
                 //

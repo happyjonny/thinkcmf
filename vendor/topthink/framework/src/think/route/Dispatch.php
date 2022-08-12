@@ -12,7 +12,6 @@ declare (strict_types = 1);
 
 namespace think\route;
 
-use Psr\Http\Message\ResponseInterface;
 use think\App;
 use think\Container;
 use think\Request;
@@ -95,12 +94,6 @@ abstract class Dispatch
     {
         if ($data instanceof Response) {
             $response = $data;
-        } elseif ($data instanceof ResponseInterface) {
-            $response = Response::create((string) $data->getBody(), 'html', $data->getStatusCode());
-
-            foreach ($data->getHeaders() as $header => $values) {
-                $response->header([$header => implode(", ", $values)]);
-            }
         } elseif (!is_null($data)) {
             // 默认自动识别响应输出类型
             $type     = $this->request->isJson() ? 'json' : 'html';

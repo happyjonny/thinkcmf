@@ -194,10 +194,6 @@ class RouteTest extends TestCase
             $this->createMiddleware()->mockery_getName() . ":params1:params2",
             $this->createMiddleware(0)->mockery_getName() => ['except' => 'bar'],
             $this->createMiddleware()->mockery_getName()  => ['only' => 'bar'],
-            [
-                'middleware' => [$this->createMiddleware()->mockery_getName(), [new \stdClass()]],
-                'options'    => ['only' => 'bar'],
-            ],
         ];
 
         $this->app->shouldReceive('parseClass')->with('controller', 'Foo')->andReturn($controller->mockery_getName());
@@ -215,8 +211,7 @@ class RouteTest extends TestCase
         $controller = m::mock(FooClass::class);
         $controller->shouldReceive('index')->andReturn('bar');
 
-        $this->app->shouldReceive('parseClass')->once()->with('controller', 'Foo')
-            ->andReturn($controller->mockery_getName());
+        $this->app->shouldReceive('parseClass')->once()->with('controller', 'Foo')->andReturn($controller->mockery_getName());
         $this->app->shouldReceive('make')->with($controller->mockery_getName(), [], true)->andReturn($controller);
 
         $request  = $this->makeRequest('foo');

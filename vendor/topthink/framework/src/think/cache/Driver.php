@@ -153,9 +153,7 @@ abstract class Driver implements CacheInterface, CacheHandlerInterface
     public function remember(string $name, $value, $expire = null)
     {
         if ($this->has($name)) {
-            if (($hit = $this->get($name)) !== null) {
-                return $hit;
-            }
+            return $this->get($name);
         }
 
         $time = time();
@@ -251,7 +249,7 @@ abstract class Driver implements CacheInterface, CacheHandlerInterface
      * @param string $data 缓存数据
      * @return mixed
      */
-    protected function unserialize($data)
+    protected function unserialize(string $data)
     {
         if (is_numeric($data)) {
             return $data;

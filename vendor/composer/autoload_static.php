@@ -54,7 +54,6 @@ class ComposerStaticInit409e436a19c882513f3c7d0ffdfd059f
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
-            'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
             'Phinx\\' => 6,
@@ -62,7 +61,6 @@ class ComposerStaticInit409e436a19c882513f3c7d0ffdfd059f
         ),
         'L' => 
         array (
-            'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\Cached\\' => 24,
             'League\\Flysystem\\' => 17,
         ),
@@ -91,10 +89,10 @@ class ComposerStaticInit409e436a19c882513f3c7d0ffdfd059f
         ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/framework/src/think',
-            1 => __DIR__ . '/..' . '/topthink/think-helper/src',
-            2 => __DIR__ . '/..' . '/topthink/think-orm/src',
-            3 => __DIR__ . '/..' . '/thinkcmf/cmf/think',
+            0 => __DIR__ . '/..' . '/topthink/think-helper/src',
+            1 => __DIR__ . '/..' . '/topthink/think-orm/src',
+            2 => __DIR__ . '/..' . '/thinkcmf/cmf/think',
+            3 => __DIR__ . '/..' . '/topthink/framework/src/think',
         ),
         'themes\\' => 
         array (
@@ -128,7 +126,6 @@ class ComposerStaticInit409e436a19c882513f3c7d0ffdfd059f
         array (
             0 => __DIR__ . '/../..' . '/app',
             1 => __DIR__ . '/..' . '/thinkcmf/cmf-app/src',
-            2 => __DIR__ . '/..' . '/thinkcmf/cmf-install/src',
         ),
         'api\\' => 
         array (
@@ -142,10 +139,6 @@ class ComposerStaticInit409e436a19c882513f3c7d0ffdfd059f
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
-        ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -162,10 +155,6 @@ class ComposerStaticInit409e436a19c882513f3c7d0ffdfd059f
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
-        ),
-        'League\\MimeTypeDetection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
         ),
         'League\\Flysystem\\Cached\\' => 
         array (

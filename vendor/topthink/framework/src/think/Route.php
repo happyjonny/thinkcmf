@@ -167,8 +167,6 @@ class Route
         }
 
         $this->config = array_merge($this->config, $this->app->config->get('route'));
-
-        $this->init();
     }
 
     protected function init()
@@ -633,18 +631,6 @@ class Route
     }
 
     /**
-     * 注册HEAD路由
-     * @access public
-     * @param string $rule  路由规则
-     * @param mixed  $route 路由地址
-     * @return RuleItem
-     */
-    public function head(string $rule, $route): RuleItem
-    {
-        return $this->rule($rule, $route, 'HEAD');
-    }
-
-    /**
      * 注册OPTIONS路由
      * @access public
      * @param string $rule  路由规则
@@ -766,6 +752,7 @@ class Route
     {
         $this->request = $request;
         $this->host    = $this->request->host(true);
+        $this->init();
 
         if ($withRoute) {
             //加载路由

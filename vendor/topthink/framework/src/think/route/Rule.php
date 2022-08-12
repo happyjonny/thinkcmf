@@ -533,17 +533,6 @@ abstract class Rule
     }
 
     /**
-     * 通过闭包检查路由是否匹配
-     * @access public
-     * @param  callable $match 闭包
-     * @return $this
-     */
-    public function match(callable $match)
-    {
-        return $this->setOption('match', $match);
-    }
-
-    /**
      * 设置路由完整匹配
      * @access public
      * @param  bool $match 是否完整匹配
@@ -705,13 +694,6 @@ abstract class Rule
      */
     protected function checkOption(array $option, Request $request): bool
     {
-        // 检查当前路由是否匹配
-        if (isset($option['match']) && is_callable($option['match'])) {
-            if (false === $option['match']($this, $request)) {
-                return false;
-            }
-        }
-
         // 请求类型检测
         if (!empty($option['method'])) {
             if (is_string($option['method']) && false === stripos($option['method'], $request->method())) {
